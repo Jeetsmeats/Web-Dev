@@ -1,4 +1,9 @@
 // get posts middleware that corresponds to get router
 export const getPosts = (req, res) => {
-    res.send('This works!');
+    
+}
+
+// create posts middle that corresponds to the post router
+export const createPosts = (req, res) => { 
+    res.send('Post creation');
 }
