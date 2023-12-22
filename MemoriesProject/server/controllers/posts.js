@@ -12,14 +12,32 @@ export const getPosts = async (req, res) => {
         
         // posts were successfully retrieved
         res.status(200).json(postMessages);
-    } catch (err) { 
+    } catch (error) { 
 
         // posts could not be found
-        res.status(404).json({ message: err.message });
+        res.status(404).json({ message: error.message });
     }
 }
 
 // create posts middle that corresponds to the post router
-export const createPosts = (req, res) => { 
-    res.send('Post creation');
+export const createPosts = async (req, res) => { 
+    
+    // get input request from post router
+    const post = req.body;
+
+    // convert post input into the PostMessage model
+    const newPost = new PostMessage(post);
+    try {
+
+        // save the post to mongodb
+        await newPost.save();
+
+        // post was successfully created
+        res.status(201).json(newPost);
+    } catch (error) {
+
+        // conflict with save ie incorrect post input or
+        // input does not match schema
+        res.status(409).json({ message: error.message });
+    }
 }
