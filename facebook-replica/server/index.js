@@ -13,6 +13,10 @@ import { fileURLToPath } from 'url';
 
 // controller files
 import { register } from './controllers/auth.js';
+
+// authentication router folder
+import authRoutes from './routes.auth.js';
+
 /* CONFIGURATIONS */
 const __filename = fileURLToPath(import.meta.url);  // to grab file url when using modules
 const __dirname = path.dirname(__filename); // when using type modules
@@ -47,8 +51,12 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 /* ROUTES WITH FILES */
+
 // route through "auth/register", upload middleware, then register information
 app.post("/auth/register", upload.single("picture", register));
+
+/* ROUTES */
+app.use("/auth", authRoutes);
 
 /* MONGOOSE SETUP */ 
 const PORT = process.env.PORT || 6001;
