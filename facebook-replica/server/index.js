@@ -11,6 +11,8 @@ import path from 'path';
 // allow setting of paths for configured directories
 import { fileURLToPath } from 'url';
 
+// controller files
+import { register } from './controllers/auth.js';
 /* CONFIGURATIONS */
 const __filename = fileURLToPath(import.meta.url);  // to grab file url when using modules
 const __dirname = path.dirname(__filename); // when using type modules
@@ -44,7 +46,11 @@ const storage = multer.diskStorage({
 // variable to upload files
 const upload = multer({ storage });
 
-/* MONGOOSE SETUP */
+/* ROUTES WITH FILES */
+// route through "auth/register", upload middleware, then register information
+app.post("/auth/register", upload.single("picture", register));
+
+/* MONGOOSE SETUP */ 
 const PORT = process.env.PORT || 6001;
 
 // documented mongoose set up
@@ -52,5 +58,5 @@ mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then(() => {
-    app.listen(PORT, () => console.log(`Server Port: ${PORT}`);
+    app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
 }).catch((error) => console.log(`${error} did not connect`));
