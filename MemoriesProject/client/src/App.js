@@ -9,12 +9,17 @@ import Form from './components/Form/Form';
 
 // images
 import memories from './images/memories.png';
+
+// styles
+import useStyles from './styles';
+
 const App = () => {
     
+    const classes = useStyles();
     return (
         <Container maxwidth='lg'>
-            <AppBar position='static' color="inherit">
-                <Typography variant="h2" align="center">Memories</Typography>
+            <AppBar className={ classes.appBar } position='static' color="inherit">
+                <Typography className={classes.heading} variant="h2" align="center">Memories</Typography>
                 <img src={memories} alt="memories" height="60"/>
             </AppBar>
             <Grow in>
