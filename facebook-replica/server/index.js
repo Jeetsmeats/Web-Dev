@@ -8,17 +8,19 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import path from 'path';
 
+import { verifyToken } from './middleware/auth.js';
+
 // allow setting of paths for configured directories
 import { fileURLToPath } from 'url';
 
-// controller files
+/* CONTROLLERS */
 import { register } from './controllers/auth.js';
+import { createPost } from './controllers/posts.js';
 
-// authentication router
-import authRoutes from './routes.auth.js';
-
-// user router
-import userRoutes from './routes/users.js';
+/* ROUTERS */
+import authRoutes from './routes.auth.js';  // authentication router
+import userRoutes from './routes/users.js'; // user router
+import postRoutes from './routes/post.js';  // posts router
 
 /* CONFIGURATIONS */
 const __filename = fileURLToPath(import.meta.url);  // to grab file url when using modules
@@ -54,13 +56,16 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 /* ROUTES WITH FILES */
-
 // route through "auth/register", upload middleware, then register information
-app.post("/auth/register", upload.single("picture", register));
+app.post("/auth/register", upload.single("picture"), register);
+
+// route through posts, verify jwt token, grab picture property and save to local directory
+app.post("/posts", verifyToken, upload.single("picture"), createPost); // allow user to upload the post
 
 /* ROUTES */
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
+app.use("/posts/", postRoutes);
 
 /* MONGOOSE SETUP */ 
 const PORT = process.env.PORT || 6001;
