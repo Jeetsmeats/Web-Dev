@@ -7,10 +7,12 @@ import dotenv from 'dotenv';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import path from 'path';
+import multer from 'multer';
 
+/* MIDDLEWARE */
 import { verifyToken } from './middleware/auth.js';
 
-// allow setting of paths for configured directories
+/* PATH TO DIRECTORY */
 import { fileURLToPath } from 'url';
 
 /* CONTROLLERS */
@@ -26,6 +28,14 @@ import postRoutes from './routes/posts.js';  // posts router
 const __filename = fileURLToPath(import.meta.url);  // to grab file url when using modules
 const __dirname = path.dirname(__filename); // when using type modules
 
+/* MODELS */
+import User from './models/Users.js';
+import Post from './models/Post.js';
+
+// sample data
+import { users, posts } from './data/index.js';
+
+// configure dotenv file
 dotenv.config();
 
 // invoke express application
@@ -39,7 +49,6 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));    // return middle
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));      // return middleware with url encoded parsed bodies
 app.use(cors())     // add cors to middleware stack
 app.use("/assets", express.static(path.join(__dirname, 'public/assets')));  // sets the directory of all packages
-
 
 /* FILE STORAGE */
 // stores inputted files into the "public/assets" directory
@@ -71,9 +80,12 @@ app.use("/posts/", postRoutes);
 const PORT = process.env.PORT || 6001;
 
 // documented mongoose set up
-mongoose.connect(process.env.MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-}).then(() => {
-    app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
+mongoose.connect(process.env.MONGO_URL)
+    .then(() => {
+        app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
+
+        /* DATA FOR ONE TIME USE */
+        // User.insertMany(users);
+        // Post.insertMany(posts);
+
 }).catch((error) => console.log(`${error} did not connect`));
