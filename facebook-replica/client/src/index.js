@@ -16,7 +16,7 @@ import {
   PERSIST,
   PURGE,
   REGISTER
-} from 'react-persist';     // allows the storage of user info in the local state - no resigning in
+} from 'redux-persist';     // allows the storage of user info in the local state - no resigning in
 import storage from 'redux-persist/lib/storage';
 import { PersistGate } from 'redux-persist/integration/react';
 
