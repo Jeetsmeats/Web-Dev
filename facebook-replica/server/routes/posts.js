@@ -18,6 +18,6 @@ router.get("/:userId/posts", verifyToken, getUserPosts);
 
 /* UPDATE */
 // for liking and unliking posts
-router.patch("/:id/like", verifyToken, likePost);
+router.patch("/:id/like", verifyToken, likePosts);
 
 export default router;
