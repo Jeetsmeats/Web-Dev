@@ -1,6 +1,12 @@
+import Navbar from "scenes/navbar";
+
+const { Box } = require("@mui/material")
+
 const HomePage = () => {
     return (
-        <div>HomePage</div>
+        <Box>
+            <Navbar />
+        </Box>
     );
 }
 
