@@ -18,9 +18,9 @@ import { register } from './controllers/auth.js';
 import { createPost } from './controllers/posts.js';
 
 /* ROUTERS */
-import authRoutes from './routes.auth.js';  // authentication router
+import authRoutes from './routes/auth.js';  // authentication router
 import userRoutes from './routes/users.js'; // user router
-import postRoutes from './routes/post.js';  // posts router
+import postRoutes from './routes/posts.js';  // posts router
 
 /* CONFIGURATIONS */
 const __filename = fileURLToPath(import.meta.url);  // to grab file url when using modules
