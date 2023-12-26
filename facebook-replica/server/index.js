@@ -33,7 +33,7 @@ import User from './models/Users.js';
 import Post from './models/Post.js';
 
 // sample data
-import { users, posts } from './data/index.js';
+// import { users, posts } from './data/index.js';
 
 // configure dotenv file
 dotenv.config();
@@ -74,7 +74,7 @@ app.post("/posts", verifyToken, upload.single("picture"), createPost); // allow 
 /* ROUTES */
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
-app.use("/posts/", postRoutes);
+app.use("/posts", postRoutes);
 
 /* MONGOOSE SETUP */ 
 const PORT = process.env.PORT || 6001;
