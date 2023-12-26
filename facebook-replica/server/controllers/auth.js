@@ -7,7 +7,7 @@ import User from "../models/Users.js"
 export const register = async (req, res) => {
 
     try {
-
+        
         const {
             firstName,
             lastName,
@@ -19,11 +19,12 @@ export const register = async (req, res) => {
             occupation
         } = req.body;
 
+        console.log(req.body);
         // create random salt from bcrypt
-        const salt = await bcrypt.getSalt();
+        const salt = await bcrypt.genSalt();
         // create a password hash key from salt
         const passwordHash = await bcrypt.hash(password, salt);
-
+        
         // create new user based on password hash
         const newUser = new User({
             firstName,
@@ -37,7 +38,7 @@ export const register = async (req, res) => {
             viewedProfile: Math.floor(Math.random() * 10000),
             impressions: Math.floor(Math.random() * 10000)
         });
-    
+        
         // save the user information
         const savedUser = await newUser.save();
         
@@ -45,6 +46,7 @@ export const register = async (req, res) => {
         res.status(201).json(savedUser);
     } catch (err) {
 
+        console.error(err);
         // user information was not successfully saved
         res.status(500).json({ error: err.message });
     }
