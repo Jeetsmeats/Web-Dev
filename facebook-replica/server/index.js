@@ -25,8 +25,8 @@ import userRoutes from './routes/users.js'; // user router
 import postRoutes from './routes/posts.js';  // posts router
 
 /* CONFIGURATIONS */
-const __filename = fileURLToPath(import.meta.url);  // to grab file url when using modules
-const __dirname = path.dirname(__filename); // when using type modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 /* MODELS */
 import User from './models/Users.js';
@@ -48,7 +48,7 @@ app.use(morgan("common"));  // for logging requests, errors into the console
 app.use(bodyParser.json({ limit: "30mb", extended: true }));    // return middleware that only parses json 
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));      // return middleware with url encoded parsed bodies
 app.use(cors())     // add cors to middleware stack
-app.use("/assets", express.static(path.join(__dirname, 'public/assets')));  // sets the directory of all packages
+app.use("/assets", express.static(path.join(__dirname, "public/assets")));  // sets the directory of all packages
 
 /* FILE STORAGE */
 // stores inputted files into the "public/assets" directory
