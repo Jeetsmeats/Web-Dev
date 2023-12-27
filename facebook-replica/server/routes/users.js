@@ -23,6 +23,6 @@ router.get("/:id/friends", verifyToken, getUserFriends);
 
 /* UPDATE */
 // make changes to user friends
-router.patch("/:id/friendId", verifyToken, addRemoveFriend);
+router.patch("/:id/:friendId", verifyToken, addRemoveFriend);
 
 export default router;
