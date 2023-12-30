@@ -7,7 +7,7 @@ const initialState = {
 };
 
 
-export const globalSlice = createSlice({
+export const globalSlice = createSlice({        // create the slice tool to store reducer methods
     name: "global",
     initialState,
     reducers: {
