@@ -8,7 +8,7 @@ export const api = createApi({          // api for making calls to the backend
     tagTypes: ["User"],      // represent the state of particular data
     endpoints: (build) => ({        // identify relevant api calls
         getUser: build.query({
-            query: (id) => `/general/users/${id}`,
+            query: (id) => `general/user/${id}`,
             providesTags: ["User"]
         })
     })
