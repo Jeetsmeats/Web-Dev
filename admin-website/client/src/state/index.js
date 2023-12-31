@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 /* initial app theme state */
 const initialState = {
-    mode: "dark"
+    mode: "dark",
+    userId: "63701ccf03239b7f700000e"
 };
 
 
