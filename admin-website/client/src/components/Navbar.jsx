@@ -15,6 +15,7 @@ import profileImage from 'assets/profile.jpeg';
 import { AppBar, IconButton, InputBase, Toolbar, useTheme } from '@mui/material';
 
 const Navbar = ({
+    user,
     isSidebarOpen,
     setIsSidebarOpen
 }) => {
