@@ -13,6 +13,10 @@ import generalRoutes from './routes/general.js';
 import managementRoutes from './routes/management.js';
 import salesRoutes from './routes/sales.js';
 
+/* DATA IMPORTS */
+import User from './models/User.js';
+import { dataUser } from './data/index.js'  // mock data
+
 /* CONFIGURATIONS */
 
 // configure dotenv file with project
@@ -32,7 +36,7 @@ app.use(cors());
 /* ROUTES */
 app.use('/clients', clientRoutes);
 app.use('/general', generalRoutes);
-app.use('management', managementRoutes);
+app.use('/management', managementRoutes);
 app.use('/sales', salesRoutes);
 
 /* MONGOOSE SETUP */
@@ -40,5 +44,9 @@ const PORT = process.env.PORT || 9000;
 mongoose
     .connect(process.env.MONGO_URL)
     .then(() => {
-    app.listen(PORT, console.log(`Server Port: ${PORT}`));
+
+        app.listen(PORT, console.log(`Server Port: ${PORT}`));
+        
+        /* ONLY INSERT DATA ONCE */
+        // User.insertMany(dataUser);
     }).catch((err) => console.log(`${err} did not connect.`));
