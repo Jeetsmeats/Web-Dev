@@ -1,6 +1,7 @@
 /* IMPORT FILES */
 import express from 'express';
-import { getProducts, getCustomers } from '../controllers/client.js'
+import { getProducts, getCustomers } from '../controllers/client.js';
+
 // routes from express application
 const router = express.Router();
 

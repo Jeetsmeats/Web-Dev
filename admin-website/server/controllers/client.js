@@ -33,10 +33,9 @@ export const getCustomers = async (req, res) => {       // /GET all /customers
     try {
         
         const customers = await User.find({ role: "user" }).select("-password"); // get all the customers - ignore the password
-
         res.status(200).json(customers);
     } catch (error) {
 
-        res.status(404).json({message: error.message});     // products were not found
+        res.status(404).json({message: error.message});     // customers were not found
     }
 }
