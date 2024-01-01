@@ -21,9 +21,9 @@ export const api = createApi({          // api for making calls to the backend
         }),
         getTransactions: build.query({  /* GET TRANSACTIONS HOOK */
             query: ({ page, pageSize, sort, search }) => ({
-                url: "client/transactions",
+                url: "clients/transactions",
                 method: "GET",
-                params: { page, pageSize, sort, search}
+                params: { page, pageSize, sort, search }
             }),
             providesTags: ["Transactions"]
         }),
