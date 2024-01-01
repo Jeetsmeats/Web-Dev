@@ -1,6 +1,7 @@
 /* IMPORT ITEMS */
 import Product from "../models/Product.js";
 import ProductStat from "../models/ProductStat.js";
+import User from "../models/User.js";
 
 export const getProducts = async (req, res) => {        // /GET /products controller
 
@@ -21,6 +22,19 @@ export const getProducts = async (req, res) => {        // /GET /products contro
         );
 
         res.status(200).json(productsWithStats);
+    } catch (error) {
+
+        res.status(404).json({message: error.message});     // products were not found
+    }
+}
+
+export const getCustomers = async (req, res) => {       // /GET all /customers 
+
+    try {
+        
+        const customers = await User.find({ role: "user" }).select("-password"); // get all the customers - ignore the password
+
+        res.status(200).json(customers);
     } catch (error) {
 
         res.status(404).json({message: error.message});     // products were not found
