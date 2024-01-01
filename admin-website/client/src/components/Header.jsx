@@ -3,7 +3,7 @@ import {
     Typography,
     Box,
     useTheme,
-} from "@mui/icons-material";
+} from "@mui/material";
 
 import React from 'react';
 
