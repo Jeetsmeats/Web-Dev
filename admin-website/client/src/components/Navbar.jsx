@@ -51,7 +51,10 @@ const Navbar = ({
             <Toolbar sx={{ justifyContent: "space-between" }}>
                 {/* LEFT SIDE */}
                 <FlexBetween>
-                    <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+                    <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                        sx={{
+                        m: "0 1.5rem 0.25rem 0.2rem"
+                    }}>
                         <MenuIcon />
                     </IconButton>
                     <FlexBetween

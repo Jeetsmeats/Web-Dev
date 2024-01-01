@@ -179,7 +179,7 @@ const Sidebar = ({
                                             : theme.palette.secondary[200]
                                     }}
                                 >
-                                    {icon}
+                                  {icon}
                                 </ListItemIcon>
                                 <ListItemText primary={text} />
                                 {active === lcText && (
