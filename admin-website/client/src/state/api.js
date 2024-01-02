@@ -28,7 +28,7 @@ export const api = createApi({          // api for making calls to the backend
             providesTags: ["Transactions"]
         }),
         getGeography: build.query({      /* GET GEOGRAPHY HOOK */
-            query: () => "client/geography",
+            query: () => "clients/geography",
             providesTags: ["Geography"]
         })
     

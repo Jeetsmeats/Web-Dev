@@ -5,7 +5,7 @@ import Transaction from "../models/Transaction.js";
 import User from "../models/User.js";
 
 // country code formatting
-import { getCountryIso3 } from "country-iso-2-to-3";
+import getCountryISO3 from "country-iso-2-to-3";
 
 export const getProducts = async (req, res) => {        // /GET /products controller
 
@@ -105,7 +105,7 @@ export const getGeography = async (req, res) => {         // /GET geography info
         const users = await User.find();        // get list of users
         
         const mappedLocations = users.reduce((acc, { country }) => {
-            const countryISO3 = getCountryIso3(country);
+            const countryISO3 = getCountryISO3(country);
             
             if (!acc[countryISO3]) {        // country is not formatted
 
