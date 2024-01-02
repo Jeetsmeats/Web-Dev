@@ -66,7 +66,7 @@ const Geography = () => {
           projectionTranslation={[ 0.45, 0.6 ]}
           projectionRotation={[ 0, 0, 0 ]}
           borderWidth={1.3}
-          borderColor="white"
+          borderColor={theme.palette.primary[500]}
           legends={[
             {
                 anchor: 'top-right',
