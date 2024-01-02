@@ -4,6 +4,9 @@ import ProductStat from "../models/ProductStat.js";
 import Transaction from "../models/Transaction.js";
 import User from "../models/User.js";
 
+// country code formatting
+import { getCountryIso3 } from "country-iso-2-to-3";
+
 export const getProducts = async (req, res) => {        // /GET /products controller
 
     try {
@@ -92,5 +95,37 @@ export const getTransactions = async (req, res) => {    // /GET transaction (ser
     } catch (error) {
 
         res.status(404).json({message: error.message});     // transactions were not found
+    }
+}
+
+export const getGeography = async (req, res) => {         // /GET geography info
+
+    try {
+        
+        const users = await User.find();        // get list of users
+        
+        const mappedLocations = users.reduce((acc, { country }) => {
+            const countryISO3 = getCountryIso3(country);
+            
+            if (!acc[countryISO3]) {        // country is not formatted
+
+                acc[countryISO3] = 0        // add country to accumulator
+            }
+
+            acc[countryISO3]++;             // accumulate country count
+            return acc;
+        }, {}); // format as choropleth charts - 3 letter country code
+
+        const formattedLocations = Object.entries(mappedLocations).map(     // add count to the country
+            ([country, count]) => {
+
+                return { id: country, value: count }
+            }
+        )
+
+        res.status(200).json(formattedLocations);
+    } catch (error) {
+
+        res.status(404).json({message: error.message});     // customers were not found
     }
 }
