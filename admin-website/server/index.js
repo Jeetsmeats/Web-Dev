@@ -19,6 +19,7 @@ import Product from './models/Product.js';
 import ProductStat from './models/ProductStat.js';
 import Transaction from './models/Transaction.js';
 import OverallStat from './models/OverallStat.js';
+import AffiliateStat from './models/AffiliateStat.js';
 
 import {
     dataUser,
@@ -26,6 +27,7 @@ import {
     dataProductStat,
     dataTransaction,
     dataOverallStat,
+    dataAffiliateStat,
 } from './data/index.js'  // mock data
 
 /* CONFIGURATIONS */
@@ -33,7 +35,7 @@ import {
 // configure dotenv file with project
 dotenv.config();
 
-// expres app
+// express app
 const app = express();
 
 // intialise app features
@@ -64,4 +66,5 @@ mongoose
         // User.insertMany(dataUser);
         // Transaction.insertMany(dataTransaction);
         // OverallStat.insertMany(dataOverallStat);
+        // AffiliateStat.insertMany(dataAffiliateStat);
     }).catch((err) => console.log(`${err} did not connect.`));
