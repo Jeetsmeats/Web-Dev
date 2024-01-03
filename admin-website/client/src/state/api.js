@@ -13,6 +13,7 @@ export const api = createApi({          // api for making calls to the backend
         "Sales",
         "Admins",
         "Performance",
+        "Dashboard",
     ],      // represent the state of particular data
 
     endpoints: (build) => ({        // identify relevant api calls
@@ -48,9 +49,13 @@ export const api = createApi({          // api for making calls to the backend
             query: () => "management/admins",
             providesTags: ["Admins"]
         }),
-        getUserPerformance: build.query({
+        getUserPerformance: build.query({       /* GET USER PERFORMANCE HOOK */
             query: (id) => `management/performance/${id}`,
             providesTags: ["Performance"],
+        }),
+        getDashboard: build.query({             /* GET DASHBOARD INFO HOOK */
+            query: () => `general/dashboard`,
+            providesTags: ["Dashboard"],
         })
     })
 })
@@ -64,4 +69,5 @@ export const {
     useGetSalesQuery,
     useGetAdminsQuery,
     useGetUserPerformanceQuery,
+    useGetDashboardQuery,
 } = api;
