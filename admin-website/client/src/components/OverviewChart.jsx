@@ -121,6 +121,7 @@ const OverviewChart = ({ isDashboard = false, view }) => {
             }}
             axisLeft={{
                 tickSize: 5,
+                tickValues: 5,
                 tickPadding: 5,
                 tickRotation: 0,
                 legend: isDashboard ? "" : `Total ${view === 'sales' ? "Revenue" : "Units"} for Year`,
@@ -129,6 +130,7 @@ const OverviewChart = ({ isDashboard = false, view }) => {
             }}
             enableGridX={false}
             enableGridY={false}
+            enableArea={isDashboard}
             pointSize={10}
             pointColor={{ theme: 'background' }}
             pointBorderWidth={2}
