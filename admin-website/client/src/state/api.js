@@ -12,6 +12,7 @@ export const api = createApi({          // api for making calls to the backend
         "Geography",
         "Sales",
         "Admins",
+        "Performance",
     ],      // represent the state of particular data
 
     endpoints: (build) => ({        // identify relevant api calls
@@ -46,6 +47,10 @@ export const api = createApi({          // api for making calls to the backend
         getAdmins: build.query({       /* GET ADMINS HOOK */
             query: () => "management/admins",
             providesTags: ["Admins"]
+        }),
+        getUserPerformance: build.query({
+            query: (id) => `management/performance/${id}`,
+            providesTags: ["Performance"],
         })
     })
 })
@@ -58,4 +63,5 @@ export const {
     useGetGeographyQuery,
     useGetSalesQuery,
     useGetAdminsQuery,
+    useGetUserPerformanceQuery,
 } = api;
