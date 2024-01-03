@@ -5,7 +5,15 @@ export const api = createApi({          // api for making calls to the backend
 
     baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_BASE_URL }),
     reducerPath: "adminApi",
-    tagTypes: ["User", "Products", "Customers", "Transactions", "Geography", "Sales"],      // represent the state of particular data
+    tagTypes: ["User",
+        "Products",
+        "Customers",
+        "Transactions",
+        "Geography",
+        "Sales",
+        "Admins",
+    ],      // represent the state of particular data
+
     endpoints: (build) => ({        // identify relevant api calls
         getUser: build.query({          /* GET USER HOOK */
             query: (id) => `general/user/${id}`,
@@ -34,6 +42,10 @@ export const api = createApi({          // api for making calls to the backend
         getSales: build.query({         /* GET SALES HOOK */
             query: () => "sales/sales",
             providesTags: ["Sales"]
+        }),
+        getAdmins: build.query({       /* GET ADMINS HOOK */
+            query: () => "management/admins",
+            providesTags: ["Admins"]
         })
     })
 })
@@ -45,4 +57,5 @@ export const {
     useGetTransactionsQuery,
     useGetGeographyQuery,
     useGetSalesQuery,
+    useGetAdminsQuery,
 } = api;
