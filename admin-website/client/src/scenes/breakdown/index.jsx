@@ -15,4 +15,4 @@ const Breakdown = () => {
     )
 }
 
-export default Breakdown
+export default Breakdown;
